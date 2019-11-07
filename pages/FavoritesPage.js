@@ -91,7 +91,7 @@ export default class FavoritesPage extends Component {
                     justifyContent: "space-around"
                   }}
                 >
-                  <ImgRecipe img={element.item.strMealThumb} />
+                  <ImgRecipe img={element.item.strMealThumb} imgWidth={100} imgHeight={"100%"} />
                   <Text style={{color: "black", fontSize: 20 }}>{element.item.strMeal}</Text>
                   <Button title="See" onPress={() =>{this.props.navigation.navigate("Recipe", { data: element.item })}}/>
                 </View>

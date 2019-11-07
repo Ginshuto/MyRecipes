@@ -103,7 +103,7 @@ class HomePage extends Component {
     >
       <View style={[styles.container]}>
         <Text style={{ flexShrink: 2 }}>{item.strMeal}</Text>
-        <ImgRecipe img={item.strMealThumb} />
+        <ImgRecipe img={item.strMealThumb} imgWidth={100} imgHeight={100}/>
       </View>
     </TouchableHighlight>
   );
@@ -152,7 +152,7 @@ class HomePage extends Component {
 export const ImgRecipe = props => {
   return (
     <Image
-      style={{ width: 100, height: "100%" }}
+      style={{ width: props.imgWidth, height: props.imgHeight }}
       resizeMode={"contain"}
       source={{ uri: `${props.img}` }}
     />

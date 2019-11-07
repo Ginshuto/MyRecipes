@@ -12,7 +12,7 @@ class Loading extends React.Component {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
           <ActivityIndicator size='large' color={this.props.displayColor}/>
-        <Text style={{ color: this.props.displayColor}}>Chargement...</Text>
+        <Text style={{ color: this.props.displayColor}}>Waiting for your research...</Text>
         {this.props.children}
       </View>
     );

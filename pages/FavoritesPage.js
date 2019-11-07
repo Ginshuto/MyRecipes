@@ -107,8 +107,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
-    alignItems: "center",
-    justifyContent: "center",
     fontFamily: "",
     width: "100%"
   },
@@ -117,7 +115,7 @@ const styles = StyleSheet.create({
     marginBottom: 30
   },
   standaloneRowFront: {
-    alignItems: "center",
+    flex: 1,
     backgroundColor: "white",
     justifyContent: "space-around",
     height: 50

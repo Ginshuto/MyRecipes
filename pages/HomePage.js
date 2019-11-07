@@ -29,26 +29,36 @@ class HomePage extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
       headerLeft: (
-        <View style={{flex: 1, flexDirection: "row"}}>
+        <View>
           <TextInput
-            style={{ backgroundColor: "white" }}
+            style={{
+              backgroundColor: "white",
+              marginLeft: 15,
+              paddingRight: 50,
+              paddingLeft: 5
+            }}
             placeholder="Enter a Recipe Name"
-            onChangeText={text => navigation.getParam('changeText')(text)}
+            onChangeText={text => navigation.getParam("changeText")(text)}
           />
+        </View>
+      ),
+      headerRight: (
+        <View>
           <Icon
             color="white"
             size={25}
+            style={{ paddingRight: 15 }}
             name={"ios-search"}
-            onPress={() => navigation.getParam('onPressSearch')()}
+            onPress={() => navigation.getParam("onPressSearch")()}
           />
         </View>
       )
     };
   };
 
-  changeText = (text) => {
+  changeText = text => {
     this.setState({ recipeName: text });
-  }
+  };
 
   onPressSearch = () => {
     this.props.recipeServ
@@ -59,19 +69,19 @@ class HomePage extends Component {
       .catch(err => {
         alert("No recipes found.");
       });
-  }
+  };
 
   refresh() {
     this.setState({ refreshing: true });
     this.setState({ refreshing: false });
   }
 
-  componentDidMount(){
-    const { navigation } = this.props
+  componentDidMount() {
+    const { navigation } = this.props;
     navigation.setParams({
       onPressSearch: this.onPressSearch,
-      changeText: this.changeText,
-    })
+      changeText: this.changeText
+    });
   }
 
   onPressRecipe = item => {
@@ -132,7 +142,7 @@ class HomePage extends Component {
             />
           </View>
         ) : (
-          <Text>Pas de recherche</Text>
+          <Loading displayColor="blue" />
         )}
       </View>
     );
@@ -142,8 +152,8 @@ class HomePage extends Component {
 export const ImgRecipe = props => {
   return (
     <Image
-      style={{ width: 100, height: 100 }}
-      resizeMode="contain"
+      style={{ width: 100, height: "100%" }}
+      resizeMode={"contain"}
       source={{ uri: `${props.img}` }}
     />
   );

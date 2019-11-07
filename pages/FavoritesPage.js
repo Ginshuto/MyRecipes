@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
   standaloneRowFront: {
     alignItems: "center",
     backgroundColor: "white",
-    justifyContent: "center",
+    justifyContent: "space-around",
     height: 50
   },
   standaloneRowBack: {

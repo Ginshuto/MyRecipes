@@ -22,25 +22,25 @@ class HomePage extends Component {
     refreshing: false
   };
 
-  static navigationOptions = {
-    header: null
-  };
+  // static navigationOptions = {
+  //   header: null
+  // };
 
   static navigationOptions = ({ navigation }) => {
     return {
       headerLeft: (
-        <View>
+        <View style={{flex: 1, flexDirection: "row"}}>
           <TextInput
-            style={{ backgroundColor: "grey" }}
+            style={{ backgroundColor: "white" }}
             placeholder="Enter a Recipe Name"
-            onChangeText={text => HomePage.changeText(text)}
+            onChangeText={text => navigation.getParam('changeText')(text)}
           />
-          {/* <Icon
-            color="grey"
+          <Icon
+            color="white"
             size={25}
             name={"ios-search"}
-            onPress={() => this.onPressSearch()}
-          /> */}
+            onPress={() => navigation.getParam('onPressSearch')()}
+          />
         </View>
       )
     };
@@ -50,13 +50,11 @@ class HomePage extends Component {
     this.setState({ recipeName: text });
   }
 
-  onPressSearch() {
+  onPressSearch = () => {
     this.props.recipeServ
       .getRecipe(this.state.recipeName)
       .then(data => {
         this.setState({ recipes: data.data.meals });
-        // console.log(this.state.recipes);
-        // console.log(data.data.meals);
       })
       .catch(err => {
         alert("No recipes found.");
@@ -66,6 +64,14 @@ class HomePage extends Component {
   refresh() {
     this.setState({ refreshing: true });
     this.setState({ refreshing: false });
+  }
+
+  componentDidMount(){
+    const { navigation } = this.props
+    navigation.setParams({
+      onPressSearch: this.onPressSearch,
+      changeText: this.changeText,
+    })
   }
 
   onPressRecipe = item => {
@@ -103,7 +109,7 @@ class HomePage extends Component {
           />
         }
       >
-        <TextInput
+        {/* <TextInput
           style={{ backgroundColor: "grey" }}
           placeholder="Enter a Recipe Name"
           onChangeText={text => this.changeText(text)}
@@ -113,7 +119,7 @@ class HomePage extends Component {
           size={25}
           name={"ios-search"}
           onPress={() => this.onPressSearch()}
-        />
+        /> */}
         {this.state.recipes !== null ? (
           <View>
             <FlatList

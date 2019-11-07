@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Loading from "../components/loading";
 import Icon from "react-native-vector-icons/Ionicons";
+import { NavigationEvents } from 'react-navigation';
 import { connect } from "react-redux";
 import {
   Text,
@@ -13,12 +14,17 @@ import {
   RefreshControl,
   TouchableHighlight
 } from "react-native";
+
 class HomePage extends Component {
   state = {
     recipeName: "",
     recipes: null,
     refreshing: false
   };
+
+  static navigationOptions = {
+    header: null
+  }
 
   changeText(text) {
     this.setState({ recipeName: text });
@@ -29,7 +35,7 @@ class HomePage extends Component {
       .getRecipe(this.state.recipeName)
       .then(data => {
         this.setState({ recipes: data.data.meals });
-        console.log(this.state.recipes);
+        // console.log(this.state.recipes);
         // console.log(data.data.meals);
       })
       .catch(err => {
@@ -43,13 +49,14 @@ class HomePage extends Component {
   }
   
   onPressRecipe = item => {
-    this.props.navigation.navigate('Recipe', { item  });
+    this.props.navigation.navigate('Recipe', { data: item  });
   };
 
   renderRecipes = ({ item }) => (
     <TouchableHighlight
+    key={item.item}
       underlayColor="rgba(73,182,77,0.9)"
-      onPress={() => this.onPressRecipe(item.idMeal)}
+      onPress={() => this.props.navigation.navigate('Recipe', {data: item})}
       style={{ borderRadius: 15, borderColor: "#cccccc", borderWidth: 0.5, margin: 10, padding: 15 }}
     >
       <View style={[styles.container]}>
@@ -100,7 +107,7 @@ class HomePage extends Component {
   }
 }
 
-const ImgRecipe = props => {
+export const ImgRecipe = props => {
   return (
     <Image
       style={{ width: 100, height: 100 }}

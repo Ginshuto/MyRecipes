@@ -8,15 +8,29 @@ import { StyleSheet, Text, View } from "react-native";
 import { createStackNavigator } from "react-navigation-stack";
 import RecipePage from "../pages/RecipePage";
 
+const recipeNavigator = createStackNavigator(
+  {
+    Home: { screen: HomePage },
+    Recipe: { screen: RecipePage }
+  },
+  {
+    initialRouteName: "Home",
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: "blue"
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        fontWeight: "bold"
+      }
+    }
+  }
+);
 
-// const recipeNavigator = createStackNavigator({
-//   Recipe: {screen: RecipePage}
-// })
-
-  const tabNavigator = createMaterialBottomTabNavigator(
+const tabNavigator = createMaterialBottomTabNavigator(
   {
     Home: {
-      screen: HomePage,
+      screen: recipeNavigator,
       navigationOptions: {
         tabBarLabel: "Home",
         tabBarIcon: ({ tintColor }) => (

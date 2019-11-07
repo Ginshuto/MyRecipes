@@ -9,7 +9,17 @@ import {
     Button,
   } from "react-native";
 
+
 export default class SettingsPage extends Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: "Settings",
+    };
+  };
+  onDeleteFavoritesPress() {
+    AsyncStorage.removeItem("recipes").then(() => alert("Favoris supprimés !"));
+  }
+
     render() {
         return (
             <View style={styles.container}>

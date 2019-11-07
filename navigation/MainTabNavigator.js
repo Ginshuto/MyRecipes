@@ -26,7 +26,42 @@ const recipeNavigator = createStackNavigator(
     }
   }
 );
+const FavoriteNavigator = createStackNavigator(
+  {
+    Favorites: { screen: FavoritesPage },
+    Recipe: { screen: RecipePage }
+  },
+  {
+    initialRouteName: "Favorites",
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: "blue"
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        fontWeight: "bold"
+      }
+    }
+  }
+);
 
+const SettingsNavigator = createStackNavigator(
+  {
+    Settings: { screen: SettingsPage }
+  },
+  {
+    initialRouteName: "Settings",
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: "blue"
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        fontWeight: "bold"
+      }
+    }
+  }
+);
 const tabNavigator = createMaterialBottomTabNavigator(
   {
     Home: {
@@ -39,7 +74,7 @@ const tabNavigator = createMaterialBottomTabNavigator(
       }
     },
     Favorites: {
-      screen: FavoritesPage,
+      screen: FavoriteNavigator,
       navigationOptions: {
         tabBarLabel: "Favorites",
         tabBarIcon: ({ tintColor }) => (
@@ -48,7 +83,7 @@ const tabNavigator = createMaterialBottomTabNavigator(
       }
     },
     Settings: {
-      screen: SettingsPage,
+      screen: SettingsNavigator,
       navigationOptions: {
         tabBarLabel: "Settings",
         tabBarIcon: ({ tintColor }) => (

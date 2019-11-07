@@ -5,16 +5,19 @@ import {
   StyleSheet,
   Image,
   SafeAreaView,
-  ScrollView
+  ScrollView,
+  AsyncStorage,
+  Button
 } from "react-native";
 import { ImgRecipe } from "./HomePage";
+import { connect } from "react-redux";
 
-export default class RecipePage extends Component {
+class RecipePage extends Component {
   constructor(props) {
     super(props);
   }
   state = {
-    data: this.props.navigation.state.params.data
+    data: this.props.navigation.state.params.data,
   };
 
   // static navigationOptions = (data) => {
@@ -22,16 +25,32 @@ export default class RecipePage extends Component {
   //         title: 'Votre Recette',
   //     }
   // };
-
+  addToFavorite() {
+    AsyncStorage.getItem("recipes").then(element => {
+      let tab = [];
+      if (element != null) {
+        tab = JSON.parse(element);
+      }
+      tab.push(this.state.data);
+      AsyncStorage.setItem("recipes", JSON.stringify(tab)).then(() => {
+        alert("Recipe added to Favorites !");
+      });
+    }).catch((err) =>{
+      alert(err)
+    });
+  }
+  
   render() {
     // console.log(this.props);
-    console.log(this.state.data);
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView>
-          <Text h1>{this.state.data.strMeal}</Text>
+          <Text h1> {this.state.data.strMeal} </Text>
           <ImgRecipe img={this.state.data.strMealThumb} />
-          <Text h2>Ingredients</Text>
+          <Text>{this.state.data.strArea} recipe</Text>
+          <Text> Type: {this.state.data.strCategory} </Text>
+          <Text> Tags: {this.state.data.strTags} </Text>
+          <Text h2> Ingredients </Text>
           <Text>
             {this.state.data.strMeasure1} {this.state.data.strIngredient1}
           </Text>
@@ -92,11 +111,22 @@ export default class RecipePage extends Component {
           <Text>
             {this.state.data.strMeasure20} {this.state.data.strIngredient20}
           </Text>
+          <Text h2> Instructions </Text>
+          <Text style={{ textAlign: "center" }}>
+            {this.state.data.strInstructions}
+          </Text>
+          <Button title="Add to Favorites" onPress={() => this.addToFavorite()} />
         </ScrollView>
       </SafeAreaView>
     );
   }
 }
+const mapStateToProps = stateStore => {
+  return {
+    recipeServ: stateStore.recipeService
+  };
+};
+export default connect(mapStateToProps)(RecipePage);
 const styles = StyleSheet.create({
   container: {
     flex: 1,

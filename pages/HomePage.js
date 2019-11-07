@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Loading from "../components/loading";
 import Icon from "react-native-vector-icons/Ionicons";
-import { NavigationEvents } from 'react-navigation';
+import { NavigationEvents } from "react-navigation";
 import { connect } from "react-redux";
 import {
   Text,
@@ -24,9 +24,29 @@ class HomePage extends Component {
 
   static navigationOptions = {
     header: null
-  }
+  };
 
-  changeText(text) {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerLeft: (
+        <View>
+          <TextInput
+            style={{ backgroundColor: "grey" }}
+            placeholder="Enter a Recipe Name"
+            onChangeText={text => HomePage.changeText(text)}
+          />
+          {/* <Icon
+            color="grey"
+            size={25}
+            name={"ios-search"}
+            onPress={() => this.onPressSearch()}
+          /> */}
+        </View>
+      )
+    };
+  };
+
+  changeText = (text) => {
     this.setState({ recipeName: text });
   }
 
@@ -47,20 +67,26 @@ class HomePage extends Component {
     this.setState({ refreshing: true });
     this.setState({ refreshing: false });
   }
-  
+
   onPressRecipe = item => {
-    this.props.navigation.navigate('Recipe', { data: item  });
+    this.props.navigation.navigate("Recipe", { data: item });
   };
 
   renderRecipes = ({ item }) => (
     <TouchableHighlight
-    key={item.item}
+      key={item.item}
       underlayColor="rgba(73,182,77,0.9)"
-      onPress={() => this.props.navigation.navigate('Recipe', {data: item})}
-      style={{ borderRadius: 15, borderColor: "#cccccc", borderWidth: 0.5, margin: 10, padding: 15 }}
+      onPress={() => this.props.navigation.navigate("Recipe", { data: item })}
+      style={{
+        borderRadius: 15,
+        borderColor: "#cccccc",
+        borderWidth: 0.5,
+        margin: 10,
+        padding: 15
+      }}
     >
       <View style={[styles.container]}>
-        <Text style={{flexShrink: 2}}>{item.strMeal}</Text>
+        <Text style={{ flexShrink: 2 }}>{item.strMeal}</Text>
         <ImgRecipe img={item.strMealThumb} />
       </View>
     </TouchableHighlight>

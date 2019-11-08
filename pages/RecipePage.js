@@ -129,7 +129,7 @@ class RecipePage extends Component {
             {this.state.data.strInstructions}
           </Text>
           <Button title="Add to Favorites" onPress={() => this.addToFavorite()} />
-          <Button title="SMS" onPress={this.btnSMSClicked}/>
+          <Button title="SMS APP" onPress={this.btnSMSClicked}/>
         </ScrollView>
       </SafeAreaView>
     );

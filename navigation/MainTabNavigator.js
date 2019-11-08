@@ -17,7 +17,7 @@ const recipeNavigator = createStackNavigator(
     initialRouteName: "Home",
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: "blue"
+        backgroundColor: "#FF4500"
       },
       headerTintColor: "#fff",
       headerTitleStyle: {
@@ -35,7 +35,7 @@ const FavoriteNavigator = createStackNavigator(
     initialRouteName: "Favorites",
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: "blue"
+        backgroundColor: "#ff4500"
       },
       headerTintColor: "#fff",
       headerTitleStyle: {
@@ -53,7 +53,7 @@ const SettingsNavigator = createStackNavigator(
     initialRouteName: "Settings",
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: "blue"
+        backgroundColor: "#FF4500"
       },
       headerTintColor: "#fff",
       headerTitleStyle: {
@@ -94,9 +94,9 @@ const tabNavigator = createMaterialBottomTabNavigator(
   },
   {
     initialRouteName: "Home",
-    activeColor: "yellow",
+    activeColor: "#FFD700",
     inactiveColor: "white",
-    barStyle: { backgroundColor: "blue" },
+    barStyle: { backgroundColor: "#FF4500" },
     labelStyle: { textAlign: "center" }
   }
 );

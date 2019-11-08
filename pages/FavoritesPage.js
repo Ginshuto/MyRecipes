@@ -13,6 +13,7 @@ import {
 import { SwipeRow } from "react-native-swipe-list-view";
 import { NavigationEvents } from "react-navigation";
 import { ImgRecipe } from "./HomePage";
+import * as Font from "expo-font";
 
 export default class FavoritesPage extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -41,6 +42,9 @@ export default class FavoritesPage extends Component {
   }
 
   componentDidMount(){
+    Font.loadAsync({
+      'Lato': require('../assets/fonts/Lato.ttf'),
+    });
     this.refresh();
   }
 
@@ -92,8 +96,8 @@ export default class FavoritesPage extends Component {
                   }}
                 >
                   <ImgRecipe img={element.item.strMealThumb} imgWidth={100} imgHeight={"100%"} />
-                  <Text style={{color: "black", fontSize: 20 }}>{element.item.strMeal}</Text>
-                  <Button title="See" onPress={() =>{this.props.navigation.navigate("Recipe", { data: element.item })}}/>
+                  <Text style={styles.TextStyle,{color: "black"}}>{element.item.strMeal}</Text>
+                  <Button title="Display" color="#ff4500" onPress={() =>{this.props.navigation.navigate("Recipe", { data: element.item })}}/>
                 </View>
               </View>
             </SwipeRow>
@@ -171,5 +175,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     marginBottom: 5
+  },
+  TextStyle:{
+    textAlign: "center",
+    fontSize: 18,
+    fontFamily: "Lato"
   }
 });

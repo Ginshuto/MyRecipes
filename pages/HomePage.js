@@ -14,6 +14,8 @@ import {
   RefreshControl,
   TouchableHighlight
 } from "react-native";
+import * as Font from 'expo-font';
+
 
 class HomePage extends Component {
   state = {
@@ -35,9 +37,12 @@ class HomePage extends Component {
               backgroundColor: "white",
               marginLeft: 15,
               paddingRight: 50,
-              paddingLeft: 5
+              paddingLeft: 5,
+              borderRadius: 10,
+              color: "#ff4500"
             }}
             placeholder="Enter a Recipe Name"
+            placeholderTextColor="#ff4500"
             onChangeText={text => navigation.getParam("changeText")(text)}
           />
         </View>
@@ -77,6 +82,9 @@ class HomePage extends Component {
   }
 
   componentDidMount() {
+    Font.loadAsync({
+      'Lato': require('../assets/fonts/Lato.ttf'),
+    });
     const { navigation } = this.props;
     navigation.setParams({
       onPressSearch: this.onPressSearch,
@@ -95,15 +103,15 @@ class HomePage extends Component {
       onPress={() => this.props.navigation.navigate("Recipe", { data: item })}
       style={{
         borderRadius: 15,
-        borderColor: "#cccccc",
-        borderWidth: 0.5,
+        borderColor: "#ff4500",
+        borderWidth: 1,
         margin: 10,
-        padding: 15
+        padding: 15,
       }}
     >
       <View style={[styles.container]}>
-        <Text style={{ flexShrink: 2 }}>{item.strMeal}</Text>
-        <ImgRecipe img={item.strMealThumb} imgWidth={100} imgHeight={100}/>
+        <Text style={styles.TextStyle}>{item.strMeal}</Text>
+        <ImgRecipe img={item.strMealThumb} imgWidth={200} imgHeight={200} />
       </View>
     </TouchableHighlight>
   );
@@ -119,17 +127,6 @@ class HomePage extends Component {
           />
         }
       >
-        {/* <TextInput
-          style={{ backgroundColor: "grey" }}
-          placeholder="Enter a Recipe Name"
-          onChangeText={text => this.changeText(text)}
-        />
-        <Icon
-          color="grey"
-          size={25}
-          name={"ios-search"}
-          onPress={() => this.onPressSearch()}
-        /> */}
         {this.state.recipes !== null ? (
           <View>
             <FlatList
@@ -142,7 +139,7 @@ class HomePage extends Component {
             />
           </View>
         ) : (
-          <Loading displayColor="blue" />
+          <Loading displayColor="#ff4500" />
         )}
       </View>
     );
@@ -152,7 +149,7 @@ class HomePage extends Component {
 export const ImgRecipe = props => {
   return (
     <Image
-      style={{ width: props.imgWidth, height: props.imgHeight }}
+      style={{ width: props.imgWidth, height: props.imgHeight, marginLeft: props.marginImg, marginRight: props.marginImg }}
       resizeMode={"contain"}
       source={{ uri: `${props.img}` }}
     />
@@ -172,6 +169,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    fontFamily: ""
+  },
+  TextStyle:{
+    textAlign: "center",
+    fontSize: 20,
+    fontFamily: "Lato",
+    marginBottom: 10
   }
 });

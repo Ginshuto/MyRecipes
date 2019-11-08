@@ -22,8 +22,8 @@ import { NavigationEvents } from 'react-navigation';
 //import StyleSheet from './AppThemes/css/styles.js';
 import {Linking } from 'expo';
 import Permissions from 'expo-permissions'
-import * as SMS from 'expo-sms'
-
+import * as SMS from 'expo-sms';
+import * as Font from 'expo-font';
 
 
 class RecipePage extends Component {
@@ -62,84 +62,90 @@ class RecipePage extends Component {
     }
   }
 
+  componentDidMount() {
+    Font.loadAsync({
+      'Lato': require('../assets/fonts/Lato.ttf'),
+    });
+  }
+
   render() {
     // console.log(this.props);
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView>
-          <Text h1> {this.state.data.strMeal} </Text>
-          <ImgRecipe img={this.state.data.strMealThumb} imgWidth={100} imgHeight={100}/>
-          <Text>{this.state.data.strArea} recipe</Text>
-          <Text> Type: {this.state.data.strCategory} </Text>
-          <Text> Tags: {this.state.data.strTags} </Text>
-          <Text h2> Ingredients </Text>
-          <Text>
+          <Text style={styles.TextStyle} h1> {this.state.data.strMeal} </Text>
+          <ImgRecipe img={this.state.data.strMealThumb} imgWidth={200} imgHeight={200} marginImg="auto"/>
+          <Text style={styles.TextStyle}>{this.state.data.strArea} recipe</Text>
+          <Text style={styles.TextStyle}> Type : {this.state.data.strCategory} </Text>
+          <Text style={styles.TextStyle}> Tags : {this.state.data.strTags} </Text>
+          <Text style={styles.TextStyle} h2> Ingredients </Text>
+          <Text style={styles.TextStyle}>
             {this.state.data.strMeasure1} {this.state.data.strIngredient1}
           </Text>
-          <Text>
+          <Text style={styles.TextStyle}>
             {this.state.data.strMeasure2} {this.state.data.strIngredient2}
           </Text>
-          <Text>
+          <Text style={styles.TextStyle}>
             {this.state.data.strMeasure3} {this.state.data.strIngredient3}
           </Text>
-          <Text>
+          <Text style={styles.TextStyle}>
             {this.state.data.strMeasure4} {this.state.data.strIngredient4}
           </Text>
-          <Text>
+          <Text style={styles.TextStyle}>
             {this.state.data.strMeasure5} {this.state.data.strIngredient5}
           </Text>
-          <Text>
+          <Text style={styles.TextStyle}>
             {this.state.data.strMeasure6} {this.state.data.strIngredient6}
           </Text>
-          <Text>
+          <Text style={styles.TextStyle}>
             {this.state.data.strMeasure7} {this.state.data.strIngredient7}
           </Text>
-          <Text>
+          <Text style={styles.TextStyle}>
             {this.state.data.strMeasure8} {this.state.data.strIngredient8}
           </Text>
-          <Text>
+          <Text style={styles.TextStyle}>
             {this.state.data.strMeasure9} {this.state.data.strIngredient9}
           </Text>
-          <Text>
+          <Text style={styles.TextStyle}>
             {this.state.data.strMeasure10} {this.state.data.strIngredient10}
           </Text>
-          <Text>
+          <Text style={styles.TextStyle}>
             {this.state.data.strMeasure11} {this.state.data.strIngredient11}
           </Text>
-          <Text>
+          <Text style={styles.TextStyle}>
             {this.state.data.strMeasure12} {this.state.data.strIngredient12}
           </Text>
-          <Text>
+          <Text style={styles.TextStyle}>
             {this.state.data.strMeasure13} {this.state.data.strIngredient13}
           </Text>
-          <Text>
+          <Text style={styles.TextStyle}>
             {this.state.data.strMeasure14} {this.state.data.strIngredient14}
           </Text>
-          <Text>
+          <Text style={styles.TextStyle}>
             {this.state.data.strMeasure15} {this.state.data.strIngredient15}
           </Text>
-          <Text>
+          <Text style={styles.TextStyle}>
             {this.state.data.strMeasure16} {this.state.data.strIngredient16}
           </Text>
-          <Text>
+          <Text style={styles.TextStyle}>
             {this.state.data.strMeasure17} {this.state.data.strIngredient17}
           </Text>
-          <Text>
+          <Text style={styles.TextStyle}>
             {this.state.data.strMeasure18} {this.state.data.strIngredient18}
           </Text>
-          <Text>
+          <Text style={styles.TextStyle}>
             {this.state.data.strMeasure19} {this.state.data.strIngredient19}
           </Text>
-          <Text>
+          <Text style={styles.TextStyle}>
             {this.state.data.strMeasure20} {this.state.data.strIngredient20}
           </Text>
-          <Text h2> Instructions </Text>
-          <Text style={{ textAlign: "center" }}>
+          <Text style={styles.TextStyle} h2> Instructions </Text>
+          <Text style={styles.TextStyle}>
             {this.state.data.strInstructions}
           </Text>
-          <Button title="Add to Favorites" onPress={() => this.addToFavorite()} />
-          <Button title="Add to Calendar" onPress={()=> this.addToCalendar()} />
-          <Button title="Send Ingredients by SMS" onPress={this.btnSMSClicked}/>
+          <Button color="#ff4500" title="Add to Favorites" onPress={() => this.addToFavorite()} />
+          <Button color="#ff4500" title="Add to Calendar" onPress={()=> this.addToCalendar()} />
+          <Button color="#ff4500" title="Send Ingredients by SMS" onPress={this.btnSMSClicked}/>
         </ScrollView>
       </SafeAreaView>
     );
@@ -204,5 +210,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     fontFamily: ""
+  },
+  TextStyle:{
+    textAlign: "center",
+    fontSize: 18,
+    fontFamily: "Lato"
   }
 });

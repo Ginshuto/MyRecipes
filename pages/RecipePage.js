@@ -18,20 +18,19 @@ import { ImgRecipe } from "./HomePage";
 import { connect } from "react-redux";
 
 import Icon from "react-native-vector-icons/Ionicons";
-import { NavigationEvents } from 'react-navigation';
+import { NavigationEvents } from "react-navigation";
 //import StyleSheet from './AppThemes/css/styles.js';
-import {Linking } from 'expo';
-import Permissions from 'expo-permissions'
-import * as SMS from 'expo-sms';
-import * as Font from 'expo-font';
-
+import { Linking } from "expo";
+import Permissions from "expo-permissions";
+import * as SMS from "expo-sms";
+import * as Font from "expo-font";
 
 class RecipePage extends Component {
   constructor(props) {
     super(props);
   }
   state = {
-    data: this.props.navigation.state.params.data,
+    data: this.props.navigation.state.params.data
   };
 
   // static navigationOptions = (data) => {
@@ -40,31 +39,33 @@ class RecipePage extends Component {
   //     }
   // };
   addToFavorite() {
-    AsyncStorage.getItem("recipes").then(element => {
-      let tab = [];
-      if (element != null) {
-        tab = JSON.parse(element);
-      }
-      tab.push(this.state.data);
-      AsyncStorage.setItem("recipes", JSON.stringify(tab)).then(() => {
-        alert("Recipe added to Favorites !");
+    AsyncStorage.getItem("recipes")
+      .then(element => {
+        let tab = [];
+        if (element != null) {
+          tab = JSON.parse(element);
+        }
+        tab.push(this.state.data);
+        AsyncStorage.setItem("recipes", JSON.stringify(tab)).then(() => {
+          alert("Recipe added to Favorites !");
+        });
+      })
+      .catch(err => {
+        alert(err);
       });
-    }).catch((err) =>{
-      alert(err)
-    });
   }
-  
+
   addToCalendar() {
-    if(Platform.OS === 'ios') {
-      Linking.openURL('calshow:');
-    } else if(Platform.OS === 'android') {
-      Linking.openURL('content://com.android.calendar/time/');
+    if (Platform.OS === "ios") {
+      Linking.openURL("calshow:");
+    } else if (Platform.OS === "android") {
+      Linking.openURL("content://com.android.calendar/time/");
     }
   }
 
   componentDidMount() {
     Font.loadAsync({
-      'Lato': require('../assets/fonts/Lato.ttf'),
+      Lato: require("../assets/fonts/Lato.ttf")
     });
   }
 
@@ -73,79 +74,195 @@ class RecipePage extends Component {
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView>
-          <Text style={styles.TextStyle} h1> {this.state.data.strMeal} </Text>
-          <ImgRecipe img={this.state.data.strMealThumb} imgWidth={200} imgHeight={200} marginImg="auto"/>
-          <Text style={styles.TextStyle}>{this.state.data.strArea} recipe</Text>
-          <Text style={styles.TextStyle}> Type : {this.state.data.strCategory} </Text>
-          <Text style={styles.TextStyle}> Tags : {this.state.data.strTags} </Text>
-          <Text style={styles.TextStyle} h2> Ingredients </Text>
-          <Text style={styles.TextStyle}>
-            {this.state.data.strMeasure1} {this.state.data.strIngredient1}
+          <Text style={[styles.TextStyle, styles.TitleStyle]}>
+            {" "}
+            {this.state.data.strMeal}{" "}
+          </Text>
+          <ImgRecipe
+            img={this.state.data.strMealThumb}
+            imgWidth={200}
+            imgHeight={200}
+            marginImg="auto"
+          />
+          <Text style={[styles.TextStyle, { paddingTop: 10 }]}>
+            {this.state.data.strArea} recipe
           </Text>
           <Text style={styles.TextStyle}>
-            {this.state.data.strMeasure2} {this.state.data.strIngredient2}
+            {" "}
+            Type : {this.state.data.strCategory}{" "}
           </Text>
           <Text style={styles.TextStyle}>
-            {this.state.data.strMeasure3} {this.state.data.strIngredient3}
+            {" "}
+            Tags : {this.state.data.strTags}{" "}
           </Text>
-          <Text style={styles.TextStyle}>
-            {this.state.data.strMeasure4} {this.state.data.strIngredient4}
+          <Text style={[styles.TextStyle, styles.TitleStyle]}>Ingredients</Text>
+          {this.state.data.strIngredient1 !== "" ? (
+            <Text style={styles.TextStyle}>
+              {this.state.data.strMeasure1} {this.state.data.strIngredient1}
+            </Text>
+          ) : (
+            <View></View>
+          )}
+          {this.state.data.strIngredient2 !== "" ? (
+            <Text style={styles.TextStyle}>
+              {this.state.data.strMeasure2} {this.state.data.strIngredient2}
+            </Text>
+          ) : (
+            <View></View>
+          )}
+          {this.state.data.strIngredient3 !== "" ? (
+            <Text style={styles.TextStyle}>
+              {this.state.data.strMeasure3} {this.state.data.strIngredient3}
+            </Text>
+          ) : (
+            <View></View>
+          )}
+          {this.state.data.strIngredient4 !== "" ? (
+            <Text style={styles.TextStyle}>
+              {this.state.data.strMeasure4} {this.state.data.strIngredient4}
+            </Text>
+          ) : (
+            <View></View>
+          )}
+          {this.state.data.strIngredient5 !== "" ? (
+            <Text style={styles.TextStyle}>
+              {this.state.data.strMeasure5} {this.state.data.strIngredient5}
+            </Text>
+          ) : (
+            <View></View>
+          )}
+          {this.state.data.strIngredient6 !== "" ? (
+            <Text style={styles.TextStyle}>
+              {this.state.data.strMeasure6} {this.state.data.strIngredient6}
+            </Text>
+          ) : (
+            <View></View>
+          )}
+          {this.state.data.strIngredient7 !== "" ? (
+            <Text style={styles.TextStyle}>
+              {this.state.data.strMeasure7} {this.state.data.strIngredient7}
+            </Text>
+          ) : (
+            <View></View>
+          )}
+          {this.state.data.strIngredient8 !== "" ? (
+            <Text style={styles.TextStyle}>
+              {this.state.data.strMeasure8} {this.state.data.strIngredient8}
+            </Text>
+          ) : (
+            <View></View>
+          )}
+          {this.state.data.strIngredient9 !== "" ? (
+            <Text style={styles.TextStyle}>
+              {this.state.data.strMeasure9} {this.state.data.strIngredient9}
+            </Text>
+          ) : (
+            <View></View>
+          )}
+          {this.state.data.strIngredient10 !== "" ? (
+            <Text style={styles.TextStyle}>
+              {this.state.data.strMeasure10} {this.state.data.strIngredient10}
+            </Text>
+          ) : (
+            <View></View>
+          )}
+          {this.state.data.strIngredient11 !== "" ? (
+            <Text style={styles.TextStyle}>
+              {this.state.data.strMeasure11} {this.state.data.strIngredient11}
+            </Text>
+          ) : (
+            <View></View>
+          )}
+          {this.state.data.strIngredient12 !== "" ? (
+            <Text style={styles.TextStyle}>
+              {this.state.data.strMeasure12} {this.state.data.strIngredient12}
+            </Text>
+          ) : (
+            <View></View>
+          )}
+          {this.state.data.strIngredient13 !== "" ? (
+            <Text style={styles.TextStyle}>
+              {this.state.data.strMeasure13} {this.state.data.strIngredient13}
+            </Text>
+          ) : (
+            <View></View>
+          )}
+          {this.state.data.strIngredient14 !== "" ? (
+            <Text style={styles.TextStyle}>
+              {this.state.data.strMeasure14} {this.state.data.strIngredient14}
+            </Text>
+          ) : (
+            <View></View>
+          )}
+          {this.state.data.strIngredient15 !== "" ? (
+            <Text style={styles.TextStyle}>
+              {this.state.data.strMeasure15} {this.state.data.strIngredient15}
+            </Text>
+          ) : (
+            <View></View>
+          )}
+          {this.state.data.strIngredient16 !== "" ? (
+            <Text style={styles.TextStyle}>
+              {this.state.data.strMeasure16} {this.state.data.strIngredient16}
+            </Text>
+          ) : (
+            <View></View>
+          )}
+          {this.state.data.strIngredient17 !== "" ? (
+            <Text style={styles.TextStyle}>
+              {this.state.data.strMeasure17} {this.state.data.strIngredient17}
+            </Text>
+          ) : (
+            <View></View>
+          )}
+          {this.state.data.strIngredient18 !== "" ? (
+            <Text style={styles.TextStyle}>
+              {this.state.data.strMeasure18} {this.state.data.strIngredient18}
+            </Text>
+          ) : (
+            <View></View>
+          )}
+          {this.state.data.strIngredient19 !== "" ? (
+            <Text style={styles.TextStyle}>
+              {this.state.data.strMeasure19} {this.state.data.strIngredient19}
+            </Text>
+          ) : (
+            <View></View>
+          )}
+          {this.state.data.strIngredient20 !== "" ? (
+            <Text style={styles.TextStyle}>
+              {this.state.data.strMeasure20} {this.state.data.strIngredient20}
+            </Text>
+          ) : (
+            <View></View>
+          )}
+          <Text style={[styles.TextStyle, styles.TitleStyle]}>
+            Instructions
           </Text>
-          <Text style={styles.TextStyle}>
-            {this.state.data.strMeasure5} {this.state.data.strIngredient5}
-          </Text>
-          <Text style={styles.TextStyle}>
-            {this.state.data.strMeasure6} {this.state.data.strIngredient6}
-          </Text>
-          <Text style={styles.TextStyle}>
-            {this.state.data.strMeasure7} {this.state.data.strIngredient7}
-          </Text>
-          <Text style={styles.TextStyle}>
-            {this.state.data.strMeasure8} {this.state.data.strIngredient8}
-          </Text>
-          <Text style={styles.TextStyle}>
-            {this.state.data.strMeasure9} {this.state.data.strIngredient9}
-          </Text>
-          <Text style={styles.TextStyle}>
-            {this.state.data.strMeasure10} {this.state.data.strIngredient10}
-          </Text>
-          <Text style={styles.TextStyle}>
-            {this.state.data.strMeasure11} {this.state.data.strIngredient11}
-          </Text>
-          <Text style={styles.TextStyle}>
-            {this.state.data.strMeasure12} {this.state.data.strIngredient12}
-          </Text>
-          <Text style={styles.TextStyle}>
-            {this.state.data.strMeasure13} {this.state.data.strIngredient13}
-          </Text>
-          <Text style={styles.TextStyle}>
-            {this.state.data.strMeasure14} {this.state.data.strIngredient14}
-          </Text>
-          <Text style={styles.TextStyle}>
-            {this.state.data.strMeasure15} {this.state.data.strIngredient15}
-          </Text>
-          <Text style={styles.TextStyle}>
-            {this.state.data.strMeasure16} {this.state.data.strIngredient16}
-          </Text>
-          <Text style={styles.TextStyle}>
-            {this.state.data.strMeasure17} {this.state.data.strIngredient17}
-          </Text>
-          <Text style={styles.TextStyle}>
-            {this.state.data.strMeasure18} {this.state.data.strIngredient18}
-          </Text>
-          <Text style={styles.TextStyle}>
-            {this.state.data.strMeasure19} {this.state.data.strIngredient19}
-          </Text>
-          <Text style={styles.TextStyle}>
-            {this.state.data.strMeasure20} {this.state.data.strIngredient20}
-          </Text>
-          <Text style={styles.TextStyle} h2> Instructions </Text>
-          <Text style={styles.TextStyle}>
+          <Text style={[styles.TextStyle, styles.PaddingText]}>
             {this.state.data.strInstructions}
           </Text>
-          <Button color="#ff4500" title="Add to Favorites" onPress={() => this.addToFavorite()} />
-          <Button color="#ff4500" title="Add to Calendar" onPress={()=> this.addToCalendar()} />
-          <Button color="#ff4500" title="Send Ingredients by SMS" onPress={this.btnSMSClicked}/>
+          <View style={styles.ButtonStyle}>
+            <Button
+              color="#ff4500"
+              title="Add to Favorites"
+              onPress={() => this.addToFavorite()}
+            />
+          </View>
+          <View style={styles.ButtonStyle}>
+            <Button
+              color="#ff4500"
+              title="Add to Calendar"
+              onPress={() => this.addToCalendar()}
+            />
+          </View>
+          <View style={styles.ButtonStyle}>
+            <Button
+              color="#ff4500"
+              title="Send Ingredients by SMS"
+              onPress={this.btnSMSClicked}
+            />
+          </View>
         </ScrollView>
       </SafeAreaView>
     );
@@ -158,44 +275,107 @@ class RecipePage extends Component {
   askSMSPermissionsAsync = async () => {
     //await Permissions.askAsync(Permissions.SMS);
   };
-  
+
   btnPhoneClicked = async () => {
     this.askLKermissionsAsync();
-    let result = await Linking.openURL('tel:0609690005');
+    let result = await Linking.openURL("tel:0609690005");
   };
 
   btnSMSClicked = async () => {
-
     const isAvailable = await SMS.isAvailableAsync();
-    
+
     if (isAvailable) {
-      'My sample HelloWorld message'
-    }else{
+      ("My sample HelloWorld message");
+    } else {
       alert("echec");
     }
-    SMS.sendSMSAsync([], 'Ingredients for '+this.state.data.strMeal+' : \n \n'
-    +this.state.data.strMeasure1+' '+this.state.data.strIngredient1+'\n'
-    +this.state.data.strMeasure2+' '+this.state.data.strIngredient2+'\n'
-    +this.state.data.strMeasure3+' '+this.state.data.strIngredient3+'\n'
-    +this.state.data.strMeasure4+' '+this.state.data.strIngredient4+'\n'
-    +this.state.data.strMeasure5+' '+this.state.data.strIngredient5+'\n'
-    +this.state.data.strMeasure6+' '+this.state.data.strIngredient6+'\n'
-    +this.state.data.strMeasure7+' '+this.state.data.strIngredient7+'\n'
-    +this.state.data.strMeasure8+' '+this.state.data.strIngredient8+'\n'
-    +this.state.data.strMeasure9+' '+this.state.data.strIngredient9+'\n'
-    +this.state.data.strMeasure10+' '+this.state.data.strIngredient10+'\n'
-    +this.state.data.strMeasure11+' '+this.state.data.strIngredient11+'\n'
-    +this.state.data.strMeasure12+' '+this.state.data.strIngredient12+'\n'
-    +this.state.data.strMeasure13+' '+this.state.data.strIngredient13+'\n'
-    +this.state.data.strMeasure14+' '+this.state.data.strIngredient14+'\n'
-    +this.state.data.strMeasure15+' '+this.state.data.strIngredient15+'\n'
-    +this.state.data.strMeasure16+' '+this.state.data.strIngredient16+'\n'
-    +this.state.data.strMeasure17+' '+this.state.data.strIngredient17+'\n'
-    +this.state.data.strMeasure18+' '+this.state.data.strIngredient18+'\n'
-    +this.state.data.strMeasure19+' '+this.state.data.strIngredient19+'\n'
-    +this.state.data.strMeasure20+' '+this.state.data.strIngredient20+'') 
+    SMS.sendSMSAsync(
+      [],
+      "Ingredients for " +
+        this.state.data.strMeal +
+        " : \n \n" +
+        this.state.data.strMeasure1 +
+        " " +
+        this.state.data.strIngredient1 +
+        "\n" +
+        this.state.data.strMeasure2 +
+        " " +
+        this.state.data.strIngredient2 +
+        "\n" +
+        this.state.data.strMeasure3 +
+        " " +
+        this.state.data.strIngredient3 +
+        "\n" +
+        this.state.data.strMeasure4 +
+        " " +
+        this.state.data.strIngredient4 +
+        "\n" +
+        this.state.data.strMeasure5 +
+        " " +
+        this.state.data.strIngredient5 +
+        "\n" +
+        this.state.data.strMeasure6 +
+        " " +
+        this.state.data.strIngredient6 +
+        "\n" +
+        this.state.data.strMeasure7 +
+        " " +
+        this.state.data.strIngredient7 +
+        "\n" +
+        this.state.data.strMeasure8 +
+        " " +
+        this.state.data.strIngredient8 +
+        "\n" +
+        this.state.data.strMeasure9 +
+        " " +
+        this.state.data.strIngredient9 +
+        "\n" +
+        this.state.data.strMeasure10 +
+        " " +
+        this.state.data.strIngredient10 +
+        "\n" +
+        this.state.data.strMeasure11 +
+        " " +
+        this.state.data.strIngredient11 +
+        "\n" +
+        this.state.data.strMeasure12 +
+        " " +
+        this.state.data.strIngredient12 +
+        "\n" +
+        this.state.data.strMeasure13 +
+        " " +
+        this.state.data.strIngredient13 +
+        "\n" +
+        this.state.data.strMeasure14 +
+        " " +
+        this.state.data.strIngredient14 +
+        "\n" +
+        this.state.data.strMeasure15 +
+        " " +
+        this.state.data.strIngredient15 +
+        "\n" +
+        this.state.data.strMeasure16 +
+        " " +
+        this.state.data.strIngredient16 +
+        "\n" +
+        this.state.data.strMeasure17 +
+        " " +
+        this.state.data.strIngredient17 +
+        "\n" +
+        this.state.data.strMeasure18 +
+        " " +
+        this.state.data.strIngredient18 +
+        "\n" +
+        this.state.data.strMeasure19 +
+        " " +
+        this.state.data.strIngredient19 +
+        "\n" +
+        this.state.data.strMeasure20 +
+        " " +
+        this.state.data.strIngredient20 +
+        ""
+    );
   };
-
 }
 const mapStateToProps = stateStore => {
   return {
@@ -211,9 +391,24 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     fontFamily: ""
   },
-  TextStyle:{
+  TextStyle: {
     textAlign: "center",
-    fontSize: 18,
+    fontSize: 20,
     fontFamily: "Lato"
+  },
+  TitleStyle: {
+    fontWeight: "bold",
+    fontSize: 25,
+    paddingVertical: 10
+  },
+  PaddingText: {
+    paddingHorizontal: 20,
+    paddingVertical: 10
+  },
+  ButtonStyle: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginVertical: 10,
   }
 });

@@ -8,13 +8,23 @@ import {
   ScrollView,
   AsyncStorage,
   Button,
-  Linking,
-  Platform,
+  FlatList,
+  RefreshControl,
+  TouchableHighlight,
+  TextInput,
+  Platform
 } from "react-native";
 import { ImgRecipe } from "./HomePage";
 import { connect } from "react-redux";
-import * as AddCalendarEvent from 'react-native-add-calendar-event';
-import AndroidCalendarEvents from 'react-native-calendarevents-android';
+
+import Icon from "react-native-vector-icons/Ionicons";
+import { NavigationEvents } from 'react-navigation';
+//import StyleSheet from './AppThemes/css/styles.js';
+import {Linking } from 'expo';
+import Permissions from 'expo-permissions'
+import * as SMS from 'expo-sms'
+
+
 
 class RecipePage extends Component {
   constructor(props) {
@@ -50,35 +60,15 @@ class RecipePage extends Component {
     } else if(Platform.OS === 'android') {
       Linking.openURL('content://com.android.calendar/time/');
     }
+  }
 
-        // const eventConfig = {
-        //   title: this.state.data.strMeal,
-        //   notes: 'tasty!',
-        // };
-        // AddCalendarEvent.presentEventCreatingDialog(eventConfig).then(()=>{
-        //   console.log('ajout au calendrier')
-        // }).catch((err =>{
-        //   alert(err);
-        // }));
-
-      //   AndroidCalendarEvents.addEvent(
-      //     {
-      //         title: this.state.data.strMeal,
-      //         startDate: Date.now(),
-      //         description: 'Event description',
-      //     },
-      //     (success) => console.log(success),
-      //     (error) => console.log(error)
-      // );
-  };
- 
   render() {
     // console.log(this.props);
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView>
           <Text h1> {this.state.data.strMeal} </Text>
-          <ImgRecipe img={this.state.data.strMealThumb} />
+          <ImgRecipe img={this.state.data.strMealThumb} imgWidth={100} imgHeight={100}/>
           <Text>{this.state.data.strArea} recipe</Text>
           <Text> Type: {this.state.data.strCategory} </Text>
           <Text> Tags: {this.state.data.strTags} </Text>
@@ -148,11 +138,58 @@ class RecipePage extends Component {
             {this.state.data.strInstructions}
           </Text>
           <Button title="Add to Favorites" onPress={() => this.addToFavorite()} />
-          <Button title="Add to Calendar" onPress ={() => this.addToCalendar()} />
+          <Button title="Add to Calendar" onPress={()=> this.addToCalendar()} />
+          <Button title="Send Ingredients by SMS" onPress={this.btnSMSClicked}/>
         </ScrollView>
       </SafeAreaView>
     );
   }
+
+  askLKermissionsAsync = async () => {
+    //await Permissions.askAsync(Permissions.Linking);
+  };
+
+  askSMSPermissionsAsync = async () => {
+    //await Permissions.askAsync(Permissions.SMS);
+  };
+  
+  btnPhoneClicked = async () => {
+    this.askLKermissionsAsync();
+    let result = await Linking.openURL('tel:0609690005');
+  };
+
+  btnSMSClicked = async () => {
+
+    const isAvailable = await SMS.isAvailableAsync();
+    
+    if (isAvailable) {
+      'My sample HelloWorld message'
+    }else{
+      alert("echec");
+    }
+    SMS.sendSMSAsync([], 'Ingredients for '+this.state.data.strMeal+' : \n \n'
+    +this.state.data.strMeasure1+' '+this.state.data.strIngredient1+'\n'
+    +this.state.data.strMeasure2+' '+this.state.data.strIngredient2+'\n'
+    +this.state.data.strMeasure3+' '+this.state.data.strIngredient3+'\n'
+    +this.state.data.strMeasure4+' '+this.state.data.strIngredient4+'\n'
+    +this.state.data.strMeasure5+' '+this.state.data.strIngredient5+'\n'
+    +this.state.data.strMeasure6+' '+this.state.data.strIngredient6+'\n'
+    +this.state.data.strMeasure7+' '+this.state.data.strIngredient7+'\n'
+    +this.state.data.strMeasure8+' '+this.state.data.strIngredient8+'\n'
+    +this.state.data.strMeasure9+' '+this.state.data.strIngredient9+'\n'
+    +this.state.data.strMeasure10+' '+this.state.data.strIngredient10+'\n'
+    +this.state.data.strMeasure11+' '+this.state.data.strIngredient11+'\n'
+    +this.state.data.strMeasure12+' '+this.state.data.strIngredient12+'\n'
+    +this.state.data.strMeasure13+' '+this.state.data.strIngredient13+'\n'
+    +this.state.data.strMeasure14+' '+this.state.data.strIngredient14+'\n'
+    +this.state.data.strMeasure15+' '+this.state.data.strIngredient15+'\n'
+    +this.state.data.strMeasure16+' '+this.state.data.strIngredient16+'\n'
+    +this.state.data.strMeasure17+' '+this.state.data.strIngredient17+'\n'
+    +this.state.data.strMeasure18+' '+this.state.data.strIngredient18+'\n'
+    +this.state.data.strMeasure19+' '+this.state.data.strIngredient19+'\n'
+    +this.state.data.strMeasure20+' '+this.state.data.strIngredient20+'') 
+  };
+
 }
 const mapStateToProps = stateStore => {
   return {

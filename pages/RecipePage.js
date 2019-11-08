@@ -7,10 +7,14 @@ import {
   SafeAreaView,
   ScrollView,
   AsyncStorage,
-  Button
+  Button,
+  Linking,
+  Platform,
 } from "react-native";
 import { ImgRecipe } from "./HomePage";
 import { connect } from "react-redux";
+import * as AddCalendarEvent from 'react-native-add-calendar-event';
+import AndroidCalendarEvents from 'react-native-calendarevents-android';
 
 class RecipePage extends Component {
   constructor(props) {
@@ -40,6 +44,34 @@ class RecipePage extends Component {
     });
   }
   
+  addToCalendar() {
+    if(Platform.OS === 'ios') {
+      Linking.openURL('calshow:');
+    } else if(Platform.OS === 'android') {
+      Linking.openURL('content://com.android.calendar/time/');
+    }
+
+        // const eventConfig = {
+        //   title: this.state.data.strMeal,
+        //   notes: 'tasty!',
+        // };
+        // AddCalendarEvent.presentEventCreatingDialog(eventConfig).then(()=>{
+        //   console.log('ajout au calendrier')
+        // }).catch((err =>{
+        //   alert(err);
+        // }));
+
+      //   AndroidCalendarEvents.addEvent(
+      //     {
+      //         title: this.state.data.strMeal,
+      //         startDate: Date.now(),
+      //         description: 'Event description',
+      //     },
+      //     (success) => console.log(success),
+      //     (error) => console.log(error)
+      // );
+  };
+ 
   render() {
     // console.log(this.props);
     return (
@@ -116,6 +148,7 @@ class RecipePage extends Component {
             {this.state.data.strInstructions}
           </Text>
           <Button title="Add to Favorites" onPress={() => this.addToFavorite()} />
+          <Button title="Add to Calendar" onPress ={() => this.addToCalendar()} />
         </ScrollView>
       </SafeAreaView>
     );

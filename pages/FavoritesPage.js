@@ -41,7 +41,7 @@ export default class FavoritesPage extends Component {
     });
   }
 
-  componentDidMount(){
+  componentDidMount() {
     Font.loadAsync({
       'Lato': require('../assets/fonts/Lato.ttf'),
     });
@@ -96,8 +96,8 @@ export default class FavoritesPage extends Component {
                   }}
                 >
                   <ImgRecipe img={element.item.strMealThumb} imgWidth={100} imgHeight={"100%"} />
-                  <Text style={styles.TextStyle,{color: "black"}}>{element.item.strMeal}</Text>
-                  <Button title="Display" color="#ff4500" onPress={() =>{this.props.navigation.navigate("Recipe", { data: element.item })}}/>
+                  <Text style={styles.TextStyle, { color: "black" }}>{element.item.strMeal}</Text>
+                  <Button title="Display" color="#ff4500" onPress={() => { this.props.navigation.navigate("Recipe", { data: element.item, favorites: 'false' }) }} />
                 </View>
               </View>
             </SwipeRow>
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginBottom: 5
   },
-  TextStyle:{
+  TextStyle: {
     textAlign: "center",
     fontSize: 18,
     fontFamily: "Lato"

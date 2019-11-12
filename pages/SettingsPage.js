@@ -26,7 +26,7 @@ export default class SettingsPage extends Component {
             <Text style={{ color: "white" }}>Settings</Text>
             <Button
             color="#ff4500"
-              title="Delete Favorites"
+              title="Delete all Favorites"
               onPress={() => this.onDeleteFavoritesPress()}
             />
           </View>

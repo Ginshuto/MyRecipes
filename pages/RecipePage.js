@@ -24,6 +24,7 @@ import { Linking } from "expo";
 import Permissions from "expo-permissions";
 import * as SMS from "expo-sms";
 import * as Font from "expo-font";
+import WebView from "react-native-webview";
 
 class RecipePage extends Component {
   constructor(props) {
@@ -67,6 +68,7 @@ class RecipePage extends Component {
     Font.loadAsync({
       Lato: require("../assets/fonts/Lato.ttf")
     });
+    // console.log(this.state.data.strYoutube.slice(32))
   }
 
   render() {
@@ -242,6 +244,15 @@ class RecipePage extends Component {
           <Text style={[styles.TextStyle, styles.PaddingText]}>
             {this.state.data.strInstructions}
           </Text>
+          <View style={{paddingHorizontal: 20}}>
+            <WebView
+            style={{height: 300}}
+              domStorageEnabled={true}
+              javaScriptEnabled={true}
+              source={{uri: `https://www.youtube.com/embed/${this.state.data.strYoutube.slice(32)}`}}
+            />
+          </View>
+
           <View style={styles.ButtonStyle}>
             <Button
               color="#ff4500"
@@ -267,19 +278,6 @@ class RecipePage extends Component {
       </SafeAreaView>
     );
   }
-
-  askLKermissionsAsync = async () => {
-    //await Permissions.askAsync(Permissions.Linking);
-  };
-
-  askSMSPermissionsAsync = async () => {
-    //await Permissions.askAsync(Permissions.SMS);
-  };
-
-  btnPhoneClicked = async () => {
-    this.askLKermissionsAsync();
-    let result = await Linking.openURL("tel:0609690005");
-  };
 
   btnSMSClicked = async () => {
     const isAvailable = await SMS.isAvailableAsync();
@@ -409,6 +407,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginVertical: 10,
+    marginVertical: 10
   }
 });

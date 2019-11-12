@@ -71,19 +71,19 @@ export default class FavoritesPage extends Component {
           keyExtractor={(item, index) => index.toString()}
           renderItem={element => (
             // <ItemWeather key={element.item} city={element.item} />)}/>
-            <SwipeRow leftOpenValue={100} rightOpenValue={-100}>
+            <SwipeRow leftOpenValue={70} rightOpenValue={-70}>
               <View style={styles.standaloneRowBack}>
                 <Text
                   title="Suppr."
                   onPress={() => this.deleteFav(element.index)}
                 >
-                  Supprimer
+                  Delete
                 </Text>
                 <Text
                   title="Suppr."
                   onPress={() => this.deleteFav(element.index)}
                 >
-                  Supprimer
+                  Delete
                 </Text>
               </View>
               <View style={styles.standaloneRowFront}>

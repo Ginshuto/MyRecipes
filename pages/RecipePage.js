@@ -31,7 +31,8 @@ class RecipePage extends Component {
     super(props);
   }
   state = {
-    data: this.props.navigation.state.params.data
+    data: this.props.navigation.state.params.data,
+    favorites: this.props.navigation.state.params.favorites
   };
 
   // static navigationOptions = (data) => {
@@ -43,13 +44,24 @@ class RecipePage extends Component {
     AsyncStorage.getItem("recipes")
       .then(element => {
         let tab = [];
+        var t = 0;
         if (element != null) {
           tab = JSON.parse(element);
+          for (i in tab) {
+            if (tab[i].strMeal == this.state.data.strMeal) {
+              t++;
+              console.log(t);
+            }
+          }
         }
-        tab.push(this.state.data);
-        AsyncStorage.setItem("recipes", JSON.stringify(tab)).then(() => {
-          alert("Recipe added to Favorites !");
-        });
+        if (t == 0) {
+          tab.push(this.state.data);
+          AsyncStorage.setItem("recipes", JSON.stringify(tab)).then(() => {
+            alert("Recipe added to Favorites !");
+          });
+        } else {
+          alert("This Recipe is already in Favorites !");
+        }
       })
       .catch(err => {
         alert(err);
@@ -244,22 +256,30 @@ class RecipePage extends Component {
           <Text style={[styles.TextStyle, styles.PaddingText]}>
             {this.state.data.strInstructions}
           </Text>
-          <View style={{paddingHorizontal: 20}}>
+          <View style={{ paddingHorizontal: 20 }}>
             <WebView
-            style={{height: 300}}
+              style={{ height: 300 }}
               domStorageEnabled={true}
               javaScriptEnabled={true}
-              source={{uri: `https://www.youtube.com/embed/${this.state.data.strYoutube.slice(32)}`}}
+              source={{
+                uri: `https://www.youtube.com/embed/${this.state.data.strYoutube.slice(
+                  32
+                )}`
+              }}
             />
           </View>
 
-          <View style={styles.ButtonStyle}>
-            <Button
-              color="#ff4500"
-              title="Add to Favorites"
-              onPress={() => this.addToFavorite()}
-            />
-          </View>
+          {this.state.favorites == "true" ? (
+            <View style={styles.ButtonStyle}>
+              <Button
+                color="#ff4500"
+                title="Add to Favorites"
+                onPress={() => this.addToFavorite()}
+              />
+            </View>
+          ) : (
+            <View></View>
+          )}
           <View style={styles.ButtonStyle}>
             <Button
               color="#ff4500"

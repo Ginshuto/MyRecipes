@@ -93,14 +93,14 @@ class HomePage extends Component {
   }
 
   onPressRecipe = item => {
-    this.props.navigation.navigate("Recipe", { data: item });
+    this.props.navigation.navigate("Recipe", { data: item, favorites: 'true' });
   };
 
   renderRecipes = ({ item }) => (
     <TouchableHighlight
       key={item.item}
       underlayColor="rgba(73,182,77,0.9)"
-      onPress={() => this.props.navigation.navigate("Recipe", { data: item })}
+      onPress={() => this.props.navigation.navigate("Recipe", { data: item, favorites: 'true' })}
       style={{
         borderRadius: 15,
         borderColor: "#ff4500",

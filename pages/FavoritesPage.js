@@ -97,7 +97,7 @@ export default class FavoritesPage extends Component {
                 >
                   <ImgRecipe img={element.item.strMealThumb} imgWidth={100} imgHeight={"100%"} />
                   <Text style={styles.TextStyle,{color: "black"}}>{element.item.strMeal}</Text>
-                  <Button title="Display" color="#ff4500" onPress={() =>{this.props.navigation.navigate("Recipe", { data: element.item })}}/>
+                  <Button title="Display" color="#ff4500" onPress={() =>{this.props.navigation.navigate("Recipe", { data: element.item, favorites: 'false' })}}/>
                 </View>
               </View>
             </SwipeRow>

@@ -89,8 +89,7 @@ class RecipePage extends Component {
       <SafeAreaView style={styles.container}>
         <ScrollView>
           <Text style={[styles.TextStyle, styles.TitleStyle]}>
-            {" "}
-            {this.state.data.strMeal}{" "}
+            {this.state.data.strMeal}
           </Text>
           <ImgRecipe
             img={this.state.data.strMealThumb}
@@ -102,13 +101,9 @@ class RecipePage extends Component {
             {this.state.data.strArea} recipe
           </Text>
           <Text style={styles.TextStyle}>
-            {" "}
-            Type : {this.state.data.strCategory}{" "}
+            Type : {this.state.data.strCategory}
           </Text>
-          <Text style={styles.TextStyle}>
-            {" "}
-            Tags : {this.state.data.strTags}{" "}
-          </Text>
+          <Text style={styles.TextStyle}>Tags : {this.state.data.strTags}</Text>
           <Text style={[styles.TextStyle, styles.TitleStyle]}>Ingredients</Text>
           {this.state.data.strIngredient1 !== "" ? (
             <Text style={styles.TextStyle}>

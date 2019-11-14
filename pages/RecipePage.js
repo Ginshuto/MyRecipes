@@ -62,6 +62,231 @@ class RecipePage extends Component {
     }
   }
 
+  dataString() {
+    var sms = "Ingredients for ";
+    sms += this.state.data.strMeal + " : \n \n";
+    if (
+      this.state.data.strIngredient1 !== null &&
+      this.state.data.strIngredient1 !== ""
+    ) {
+      sms =
+        sms +
+        this.state.data.strMeasure1 +
+        " " +
+        this.state.data.strIngredient1 +
+        "\n";
+    }
+    if (
+      this.state.data.strIngredient2 !== null &&
+      this.state.data.strIngredient2 !== ""
+    ) {
+      sms =
+        sms +
+        this.state.data.strMeasure2 +
+        " " +
+        this.state.data.strIngredient2 +
+        "\n";
+    }
+    if (
+      this.state.data.strIngredient3 !== null &&
+      this.state.data.strIngredient3 !== ""
+    ) {
+      sms =
+        sms +
+        this.state.data.strMeasure3 +
+        " " +
+        this.state.data.strIngredient3 +
+        "\n";
+    }
+    if (
+      this.state.data.strIngredient4 !== null &&
+      this.state.data.strIngredient4 !== ""
+    ) {
+      sms =
+        sms +
+        this.state.data.strMeasure4 +
+        " " +
+        this.state.data.strIngredient4 +
+        "\n";
+    }
+    if (
+      this.state.data.strIngredient5 !== null &&
+      this.state.data.strIngredient5 !== ""
+    ) {
+      sms =
+        sms +
+        this.state.data.strMeasure5 +
+        " " +
+        this.state.data.strIngredient5 +
+        " \n";
+    }
+    if (
+      this.state.data.strIngredient6 !== null &&
+      this.state.data.strIngredient6 !== ""
+    ) {
+      sms =
+        sms +
+        this.state.data.strMeasure6 +
+        " " +
+        this.state.data.strIngredient6 +
+        " \n";
+    }
+    if (
+      this.state.data.strIngredient7 !== null &&
+      this.state.data.strIngredient7 !== ""
+    ) {
+      sms =
+        sms +
+        this.state.data.strMeasure7 +
+        " " +
+        this.state.data.strIngredient7 +
+        " \n";
+    }
+    if (
+      this.state.data.strIngredient8 !== null &&
+      this.state.data.strIngredient8 !== ""
+    ) {
+      sms =
+        sms +
+        this.state.data.strMeasure8 +
+        " " +
+        this.state.data.strIngredient8 +
+        " \n";
+    }
+    if (
+      this.state.data.strIngredient9 !== null &&
+      this.state.data.strIngredient9 !== ""
+    ) {
+      sms =
+        sms +
+        this.state.data.strMeasure9 +
+        " " +
+        this.state.data.strIngredient9 +
+        "\n";
+    }
+    if (
+      this.state.data.strIngredient10 !== null &&
+      this.state.data.strIngredient10 !== ""
+    ) {
+      sms =
+        sms +
+        this.state.data.strMeasure10 +
+        " " +
+        this.state.data.strIngredient10 +
+        "\n";
+    }
+    if (
+      this.state.data.strIngredient11 !== null &&
+      this.state.data.strIngredient11 !== ""
+    ) {
+      sms =
+        sms +
+        this.state.data.strMeasure11 +
+        " " +
+        this.state.data.strIngredient11 +
+        "\n";
+    }
+    if (
+      this.state.data.strIngredient12 !== null &&
+      this.state.data.strIngredient12 !== ""
+    ) {
+      sms =
+        sms +
+        this.state.data.strMeasure12 +
+        " " +
+        this.state.data.strIngredient12 +
+        "\n";
+    }
+    if (
+      this.state.data.strIngredient13 !== null &&
+      this.state.data.strIngredient13 !== ""
+    ) {
+      sms =
+        sms +
+        this.state.data.strMeasure13 +
+        " " +
+        this.state.data.strIngredient13 +
+        "\n";
+    }
+    if (
+      this.state.data.strIngredient14 !== null &&
+      this.state.data.strIngredient14 !== ""
+    ) {
+      sms =
+        sms +
+        this.state.data.strMeasure14 +
+        " " +
+        this.state.data.strIngredient14 +
+        "\n";
+    }
+    if (
+      this.state.data.strIngredient15 !== null &&
+      this.state.data.strIngredient15 !== ""
+    ) {
+      sms =
+        sms +
+        this.state.data.strMeasure15 +
+        " " +
+        this.state.data.strIngredient15 +
+        "\n";
+    }
+    if (
+      this.state.data.strIngredient16 !== null &&
+      this.state.data.strIngredient16 !== ""
+    ) {
+      sms =
+        sms +
+        this.state.data.strMeasure16 +
+        " " +
+        this.state.data.strIngredient16 +
+        " \n";
+    }
+    if (
+      this.state.data.strIngredient17 !== null &&
+      this.state.data.strIngredient17 !== ""
+    ) {
+      sms =
+        sms +
+        this.state.data.strMeasure17 +
+        " " +
+        this.state.data.strIngredient17 +
+        "\n";
+    }
+    if (
+      this.state.data.strIngredient18 !== null &&
+      this.state.data.strIngredient18 !== ""
+    ) {
+      sms =
+        sms +
+        this.state.data.strMeasure18 +
+        " " +
+        this.state.data.strIngredient18 +
+        "\n";
+    }
+    if (
+      this.state.data.strIngredient19 !== null &&
+      this.state.data.strIngredient19 !== ""
+    ) {
+      sms =
+        sms +
+        this.state.data.strMeasure19 +
+        " " +
+        this.state.data.strIngredient19 +
+        "\n";
+    }
+    if (
+      this.state.data.strIngredient20 !== null &&
+      this.state.data.strIngredient20 !== ""
+    ) {
+      sms =
+        sms +
+        this.state.data.strMeasure20 +
+        " " +
+        this.state.data.strIngredient20;
+    }
+    return sms;
+  }
+
   componentDidMount() {
     Font.loadAsync({
       Lato: require("../assets/fonts/Lato.ttf")
@@ -306,92 +531,7 @@ class RecipePage extends Component {
     } else {
       alert("echec");
     }
-    SMS.sendSMSAsync(
-      [],
-      "Ingredients for " +
-        this.state.data.strMeal +
-        " : \n \n" +
-        this.state.data.strMeasure1 +
-        " " +
-        this.state.data.strIngredient1 +
-        "\n" +
-        this.state.data.strMeasure2 +
-        " " +
-        this.state.data.strIngredient2 +
-        "\n" +
-        this.state.data.strMeasure3 +
-        " " +
-        this.state.data.strIngredient3 +
-        "\n" +
-        this.state.data.strMeasure4 +
-        " " +
-        this.state.data.strIngredient4 +
-        "\n" +
-        this.state.data.strMeasure5 +
-        " " +
-        this.state.data.strIngredient5 +
-        "\n" +
-        this.state.data.strMeasure6 +
-        " " +
-        this.state.data.strIngredient6 +
-        "\n" +
-        this.state.data.strMeasure7 +
-        " " +
-        this.state.data.strIngredient7 +
-        "\n" +
-        this.state.data.strMeasure8 +
-        " " +
-        this.state.data.strIngredient8 +
-        "\n" +
-        this.state.data.strMeasure9 +
-        " " +
-        this.state.data.strIngredient9 +
-        "\n" +
-        this.state.data.strMeasure10 +
-        " " +
-        this.state.data.strIngredient10 +
-        "\n" +
-        this.state.data.strMeasure11 +
-        " " +
-        this.state.data.strIngredient11 +
-        "\n" +
-        this.state.data.strMeasure12 +
-        " " +
-        this.state.data.strIngredient12 +
-        "\n" +
-        this.state.data.strMeasure13 +
-        " " +
-        this.state.data.strIngredient13 +
-        "\n" +
-        this.state.data.strMeasure14 +
-        " " +
-        this.state.data.strIngredient14 +
-        "\n" +
-        this.state.data.strMeasure15 +
-        " " +
-        this.state.data.strIngredient15 +
-        "\n" +
-        this.state.data.strMeasure16 +
-        " " +
-        this.state.data.strIngredient16 +
-        "\n" +
-        this.state.data.strMeasure17 +
-        " " +
-        this.state.data.strIngredient17 +
-        "\n" +
-        this.state.data.strMeasure18 +
-        " " +
-        this.state.data.strIngredient18 +
-        "\n" +
-        this.state.data.strMeasure19 +
-        " " +
-        this.state.data.strIngredient19 +
-        "\n" +
-        this.state.data.strMeasure20 +
-        " " +
-        this.state.data.strIngredient20 +
-        ""
-    );
+    SMS.sendSMSAsync([], this.dataString());
   };
 }
 const mapStateToProps = stateStore => {

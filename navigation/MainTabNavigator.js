@@ -4,7 +4,6 @@ import SettingsPage from "../pages/SettingsPage";
 import FavoritesPage from "../pages/FavoritesPage";
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 import Icon from "react-native-vector-icons/Ionicons";
-import { StyleSheet, Text, View } from "react-native";
 import { createStackNavigator } from "react-navigation-stack";
 import RecipePage from "../pages/RecipePage";
 

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Loading from '../components/loading';
 import {
     Text,
     View,

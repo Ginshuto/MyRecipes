@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Loading from "../components/loading";
 import Icon from "react-native-vector-icons/Ionicons";
-import { NavigationEvents } from "react-navigation";
 import { connect } from "react-redux";
 import {
   Text,
@@ -91,10 +90,6 @@ class HomePage extends Component {
       changeText: this.changeText
     });
   }
-
-  onPressRecipe = item => {
-    this.props.navigation.navigate("Recipe", { data: item, favorites: 'true' });
-  };
 
   renderRecipes = ({ item }) => (
     <TouchableHighlight

@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import Loading from "../components/loading";
 import {
   Text,
   View,
   StyleSheet,
-  Image,
   Button,
   AsyncStorage,
   RefreshControl,
@@ -70,7 +68,6 @@ export default class FavoritesPage extends Component {
           }
           keyExtractor={(item, index) => index.toString()}
           renderItem={element => (
-            // <ItemWeather key={element.item} city={element.item} />)}/>
             <SwipeRow leftOpenValue={70} rightOpenValue={-70}>
               <View style={styles.standaloneRowBack}>
                 <Text

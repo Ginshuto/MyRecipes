@@ -8,20 +8,11 @@ import {
   ScrollView,
   AsyncStorage,
   Button,
-  FlatList,
-  RefreshControl,
-  TouchableHighlight,
-  TextInput,
   Platform
 } from "react-native";
 import { ImgRecipe } from "./HomePage";
 import { connect } from "react-redux";
-
-import Icon from "react-native-vector-icons/Ionicons";
-import { NavigationEvents } from "react-navigation";
-//import StyleSheet from './AppThemes/css/styles.js';
 import { Linking } from "expo";
-import Permissions from "expo-permissions";
 import * as SMS from "expo-sms";
 import * as Font from "expo-font";
 import WebView from "react-native-webview";
@@ -35,11 +26,6 @@ class RecipePage extends Component {
     favorites: this.props.navigation.state.params.favorites
   };
 
-  // static navigationOptions = (data) => {
-  //     return {
-  //         title: 'Votre Recette',
-  //     }
-  // };
   addToFavorite() {
     AsyncStorage.getItem("recipes")
       .then(element => {
@@ -80,11 +66,9 @@ class RecipePage extends Component {
     Font.loadAsync({
       Lato: require("../assets/fonts/Lato.ttf")
     });
-    // console.log(this.state.data.strYoutube.slice(32))
   }
 
   render() {
-    // console.log(this.props);
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView>
@@ -105,140 +89,160 @@ class RecipePage extends Component {
           </Text>
           <Text style={styles.TextStyle}>Tags : {this.state.data.strTags}</Text>
           <Text style={[styles.TextStyle, styles.TitleStyle]}>Ingredients</Text>
-          {this.state.data.strIngredient1 !== "" && this.state.data.strIngredient1 !== null ? (
+          {this.state.data.strIngredient1 !== "" &&
+          this.state.data.strIngredient1 !== null ? (
             <Text style={styles.TextStyle}>
               {this.state.data.strMeasure1} {this.state.data.strIngredient1}
             </Text>
           ) : (
             <View></View>
           )}
-          {this.state.data.strIngredient2 !== "" && this.state.data.strIngredient2 !== null ? (
+          {this.state.data.strIngredient2 !== "" &&
+          this.state.data.strIngredient2 !== null ? (
             <Text style={styles.TextStyle}>
               {this.state.data.strMeasure2} {this.state.data.strIngredient2}
             </Text>
           ) : (
             <View></View>
           )}
-          {this.state.data.strIngredient3 !== "" && this.state.data.strIngredient3 !== null ? (
+          {this.state.data.strIngredient3 !== "" &&
+          this.state.data.strIngredient3 !== null ? (
             <Text style={styles.TextStyle}>
               {this.state.data.strMeasure3} {this.state.data.strIngredient3}
             </Text>
           ) : (
             <View></View>
           )}
-          {this.state.data.strIngredient4 !== "" && this.state.data.strIngredient4 !== null ? (
+          {this.state.data.strIngredient4 !== "" &&
+          this.state.data.strIngredient4 !== null ? (
             <Text style={styles.TextStyle}>
               {this.state.data.strMeasure4} {this.state.data.strIngredient4}
             </Text>
           ) : (
             <View></View>
           )}
-          {this.state.data.strIngredient5 !== "" && this.state.data.strIngredient5 !== null ? (
+          {this.state.data.strIngredient5 !== "" &&
+          this.state.data.strIngredient5 !== null ? (
             <Text style={styles.TextStyle}>
               {this.state.data.strMeasure5} {this.state.data.strIngredient5}
             </Text>
           ) : (
             <View></View>
           )}
-          {this.state.data.strIngredient6 !== "" && this.state.data.strIngredient6 !== null ? (
+          {this.state.data.strIngredient6 !== "" &&
+          this.state.data.strIngredient6 !== null ? (
             <Text style={styles.TextStyle}>
               {this.state.data.strMeasure6} {this.state.data.strIngredient6}
             </Text>
           ) : (
             <View></View>
           )}
-          {this.state.data.strIngredient7 !== "" && this.state.data.strIngredient7 !== null ? (
+          {this.state.data.strIngredient7 !== "" &&
+          this.state.data.strIngredient7 !== null ? (
             <Text style={styles.TextStyle}>
               {this.state.data.strMeasure7} {this.state.data.strIngredient7}
             </Text>
           ) : (
             <View></View>
           )}
-          {this.state.data.strIngredient8 !== "" && this.state.data.strIngredient8 !== null ? (
+          {this.state.data.strIngredient8 !== "" &&
+          this.state.data.strIngredient8 !== null ? (
             <Text style={styles.TextStyle}>
               {this.state.data.strMeasure8} {this.state.data.strIngredient8}
             </Text>
           ) : (
             <View></View>
           )}
-          {this.state.data.strIngredient9 !== "" && this.state.data.strIngredient9 !== null ? (
+          {this.state.data.strIngredient9 !== "" &&
+          this.state.data.strIngredient9 !== null ? (
             <Text style={styles.TextStyle}>
               {this.state.data.strMeasure9} {this.state.data.strIngredient9}
             </Text>
           ) : (
             <View></View>
           )}
-          {this.state.data.strIngredient10 !== "" && this.state.data.strIngredient10 !== null ? (
+          {this.state.data.strIngredient10 !== "" &&
+          this.state.data.strIngredient10 !== null ? (
             <Text style={styles.TextStyle}>
               {this.state.data.strMeasure10} {this.state.data.strIngredient10}
             </Text>
           ) : (
             <View></View>
           )}
-          {this.state.data.strIngredient11 !== "" && this.state.data.strIngredient11 !== null ? (
+          {this.state.data.strIngredient11 !== "" &&
+          this.state.data.strIngredient11 !== null ? (
             <Text style={styles.TextStyle}>
               {this.state.data.strMeasure11} {this.state.data.strIngredient11}
             </Text>
           ) : (
             <View></View>
           )}
-          {this.state.data.strIngredient12 !== "" && this.state.data.strIngredient12 !== null ? (
+          {this.state.data.strIngredient12 !== "" &&
+          this.state.data.strIngredient12 !== null ? (
             <Text style={styles.TextStyle}>
               {this.state.data.strMeasure12} {this.state.data.strIngredient12}
             </Text>
           ) : (
             <View></View>
           )}
-          {this.state.data.strIngredient13 !== "" && this.state.data.strIngredient13 !== null ? (
+          {this.state.data.strIngredient13 !== "" &&
+          this.state.data.strIngredient13 !== null ? (
             <Text style={styles.TextStyle}>
               {this.state.data.strMeasure13} {this.state.data.strIngredient13}
             </Text>
           ) : (
             <View></View>
           )}
-          {this.state.data.strIngredient14 !== "" && this.state.data.strIngredient14 !== null ? (
+          {this.state.data.strIngredient14 !== "" &&
+          this.state.data.strIngredient14 !== null ? (
             <Text style={styles.TextStyle}>
               {this.state.data.strMeasure14} {this.state.data.strIngredient14}
             </Text>
           ) : (
             <View></View>
           )}
-          {this.state.data.strIngredient15 !== "" && this.state.data.strIngredient15 !== null ? (
+          {this.state.data.strIngredient15 !== "" &&
+          this.state.data.strIngredient15 !== null ? (
             <Text style={styles.TextStyle}>
               {this.state.data.strMeasure15} {this.state.data.strIngredient15}
             </Text>
           ) : (
             <View></View>
           )}
-          {this.state.data.strIngredient16 !== "" && this.state.data.strIngredient16 !== null ? (
+          {this.state.data.strIngredient16 !== "" &&
+          this.state.data.strIngredient16 !== null ? (
             <Text style={styles.TextStyle}>
               {this.state.data.strMeasure16} {this.state.data.strIngredient16}
             </Text>
           ) : (
             <View></View>
           )}
-          {this.state.data.strIngredient17 !== "" && this.state.data.strIngredient17 !== null ? (
+          {this.state.data.strIngredient17 !== "" &&
+          this.state.data.strIngredient17 !== null ? (
             <Text style={styles.TextStyle}>
               {this.state.data.strMeasure17} {this.state.data.strIngredient17}
             </Text>
           ) : (
             <View></View>
           )}
-          {this.state.data.strIngredient18 !== "" && this.state.data.strIngredient18 !== null ? (
+          {this.state.data.strIngredient18 !== "" &&
+          this.state.data.strIngredient18 !== null ? (
             <Text style={styles.TextStyle}>
               {this.state.data.strMeasure18} {this.state.data.strIngredient18}
             </Text>
           ) : (
             <View></View>
           )}
-          {this.state.data.strIngredient19 !== "" && this.state.data.strIngredient19 !== null ? (
+          {this.state.data.strIngredient19 !== "" &&
+          this.state.data.strIngredient19 !== null ? (
             <Text style={styles.TextStyle}>
               {this.state.data.strMeasure19} {this.state.data.strIngredient19}
             </Text>
           ) : (
             <View></View>
           )}
-          {this.state.data.strIngredient20 !== "" && this.state.data.strIngredient20 !== null ? (
+          {this.state.data.strIngredient20 !== "" &&
+          this.state.data.strIngredient20 !== null ? (
             <Text style={styles.TextStyle}>
               {this.state.data.strMeasure20} {this.state.data.strIngredient20}
             </Text>
